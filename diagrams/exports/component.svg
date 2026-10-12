@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1040" height="720" viewBox="0 0 1040 720">
   <rect width="1040" height="720" fill="#f7f5f0"/>
-  <text x="40" y="36" font-family="Georgia, serif" font-size="20" fill="#1c1915">Component diagram (draft)  Dispatch Advisor</text>
+  <text x="40" y="36" font-family="Georgia, serif" font-size="20" fill="#1c1915">Component diagram (draft)  -  Dispatch Advisor</text>
   <text x="40" y="58" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#4a453c">Draft structure. No component sends a set-point to equipment.</text>
 
   <defs>
