@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="720" viewBox="0 0 1040 720">
+  <rect width="1040" height="720" fill="#f7f5f0"/>
+  <text x="40" y="36" font-family="Georgia, serif" font-size="20" fill="#1c1915">Component diagram (draft)  Dispatch Advisor</text>
+  <text x="40" y="58" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#4a453c">Draft structure. No component sends a set-point to equipment.</text>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1c1915"/>
+    </marker>
+  </defs>
+
+  <rect x="400" y="80" width="240" height="52" rx="6" fill="#ffffff" stroke="#1c1915"/>
+  <text x="520" y="112" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#1c1915">Operator views</text>
+
+  <rect x="400" y="180" width="240" height="52" rx="6" fill="#ffffff" stroke="#1c1915"/>
+  <text x="520" y="212" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#1c1915">Data intake</text>
+
+  <rect x="80" y="290" width="220" height="52" rx="6" fill="#ffffff" stroke="#1c1915"/>
+  <text x="190" y="322" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#1c1915">PV forecast</text>
+
+  <rect x="740" y="290" width="220" height="52" rx="6" fill="#ffffff" stroke="#1c1915"/>
+  <text x="850" y="322" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#1c1915">Load forecast</text>
+
+  <rect x="80" y="410" width="220" height="52" rx="6" fill="#1c1915"/>
+  <text x="190" y="442" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#f7f5f0">Optimizer (MILP)</text>
+
+  <rect x="740" y="410" width="220" height="52" rx="6" fill="#ffffff" stroke="#1c1915"/>
+  <text x="850" y="442" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#1c1915">Baseline scheduler</text>
+
+  <rect x="400" y="500" width="240" height="52" rx="6" fill="#ffffff" stroke="#1c1915"/>
+  <text x="520" y="532" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#1c1915">Constraint checker</text>
+
+  <rect x="400" y="610" width="240" height="52" rx="6" fill="#ffffff" stroke="#1c1915"/>
+  <text x="520" y="642" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#1c1915">KPI reporter</text>
+
+  <line x1="520" y1="132" x2="520" y2="180" stroke="#1c1915" marker-end="url(#arrow)"/>
+  <line x1="460" y1="232" x2="230" y2="290" stroke="#1c1915" marker-end="url(#arrow)"/>
+  <line x1="580" y1="232" x2="810" y2="290" stroke="#1c1915" marker-end="url(#arrow)"/>
+  <line x1="190" y1="342" x2="190" y2="410" stroke="#1c1915" marker-end="url(#arrow)"/>
+  <line x1="850" y1="342" x2="850" y2="410" stroke="#1c1915" marker-end="url(#arrow)"/>
+  <line x1="190" y1="462" x2="430" y2="500" stroke="#1c1915" marker-end="url(#arrow)"/>
+  <line x1="850" y1="462" x2="610" y2="500" stroke="#1c1915" marker-end="url(#arrow)"/>
+  <line x1="520" y1="552" x2="520" y2="610" stroke="#1c1915" marker-end="url(#arrow)"/>
+
+  <path d="M 400 636 C 280 636 280 132 400 106" fill="none" stroke="#1c1915" marker-end="url(#arrow)"/>
+  <text x="250" y="380" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#4a453c">schedule,</text>
+  <text x="246" y="396" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#4a453c">KPIs, reasons</text>
+  <text x="40" y="700" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#4a453c">PV and load forecasts also go to the KPI reporter so forecast error can be shown. Editable source: diagrams/component.mmd</text>
+</svg>

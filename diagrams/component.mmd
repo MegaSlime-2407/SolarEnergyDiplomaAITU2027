@@ -1,0 +1,24 @@
+flowchart TB
+  operatorViews[OperatorViews]
+  dataIntake[DataIntake]
+  pvForecast[PvForecast]
+  loadForecast[LoadForecast]
+  optimizer[Optimizer]
+  baselineScheduler[BaselineScheduler]
+  constraintChecker[ConstraintChecker]
+  kpiReporter[KpiReporter]
+  operatorViews -->|study file and limits| dataIntake
+  dataIntake --> pvForecast
+  dataIntake --> loadForecast
+  dataIntake --> optimizer
+  dataIntake --> baselineScheduler
+  pvForecast --> optimizer
+  loadForecast --> optimizer
+  pvForecast --> baselineScheduler
+  loadForecast --> baselineScheduler
+  optimizer --> constraintChecker
+  baselineScheduler --> constraintChecker
+  constraintChecker --> kpiReporter
+  pvForecast --> kpiReporter
+  loadForecast --> kpiReporter
+  kpiReporter -->|schedule KPIs and reasons| operatorViews
