@@ -1,0 +1,15 @@
+flowchart TB
+  energyManager[EnergyManager]
+  maintenanceEngineer[MaintenanceEngineer]
+  subgraph dispatchAdvisor [DispatchAdvisor]
+    uc1[UC1 View site energy balance]
+    uc2[UC2 Set battery limits]
+    uc3[UC3 Generate day-ahead schedule]
+    uc4[UC4 Compare with surplus rule]
+    uc5[UC5 Inspect forecast error]
+  end
+  energyManager --> uc1
+  energyManager --> uc3
+  energyManager --> uc4
+  energyManager --> uc5
+  maintenanceEngineer --> uc2

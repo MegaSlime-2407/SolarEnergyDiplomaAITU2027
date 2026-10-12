@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="640" viewBox="0 0 960 640">
+  <rect width="960" height="640" fill="#f7f5f0"/>
+  <text x="40" y="36" font-family="Georgia, serif" font-size="20" fill="#1c1915">Use cases  Dispatch Advisor</text>
+
+  <rect x="250" y="70" width="460" height="500" rx="8" fill="#ffffff" stroke="#1c1915" stroke-width="1.5"/>
+  <text x="480" y="98" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#4a453c">Dispatch Advisor</text>
+
+  <ellipse cx="480" cy="160" rx="150" ry="32" fill="#f7f5f0" stroke="#1c1915"/>
+  <text x="480" y="164" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#1c1915">UC1 View energy balance</text>
+
+  <ellipse cx="480" cy="250" rx="170" ry="32" fill="#f7f5f0" stroke="#1c1915"/>
+  <text x="480" y="254" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#1c1915">UC2 Set battery limits</text>
+
+  <ellipse cx="480" cy="340" rx="180" ry="32" fill="#f7f5f0" stroke="#1c1915"/>
+  <text x="480" y="344" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#1c1915">UC3 Generate day-ahead schedule</text>
+
+  <ellipse cx="480" cy="430" rx="180" ry="32" fill="#f7f5f0" stroke="#1c1915"/>
+  <text x="480" y="434" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#1c1915">UC4 Compare with surplus rule</text>
+
+  <ellipse cx="480" cy="520" rx="160" ry="32" fill="#f7f5f0" stroke="#1c1915"/>
+  <text x="480" y="524" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#1c1915">UC5 Inspect forecast error</text>
+
+  <circle cx="90" cy="150" r="16" fill="none" stroke="#1c1915"/>
+  <line x1="90" y1="166" x2="90" y2="210" stroke="#1c1915"/>
+  <line x1="90" y1="180" x2="62" y2="200" stroke="#1c1915"/>
+  <line x1="90" y1="180" x2="118" y2="200" stroke="#1c1915"/>
+  <line x1="90" y1="210" x2="68" y2="246" stroke="#1c1915"/>
+  <line x1="90" y1="210" x2="112" y2="246" stroke="#1c1915"/>
+  <text x="90" y="272" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#1c1915">Energy</text>
+  <text x="90" y="288" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#1c1915">manager</text>
+
+  <circle cx="870" cy="230" r="16" fill="none" stroke="#1c1915"/>
+  <line x1="870" y1="246" x2="870" y2="290" stroke="#1c1915"/>
+  <line x1="870" y1="260" x2="842" y2="280" stroke="#1c1915"/>
+  <line x1="870" y1="260" x2="898" y2="280" stroke="#1c1915"/>
+  <line x1="870" y1="290" x2="848" y2="326" stroke="#1c1915"/>
+  <line x1="870" y1="290" x2="892" y2="326" stroke="#1c1915"/>
+  <text x="870" y="352" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#1c1915">Maintenance</text>
+  <text x="870" y="368" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#1c1915">engineer</text>
+
+  <line x1="120" y1="190" x2="330" y2="160" stroke="#1c1915"/>
+  <line x1="120" y1="210" x2="300" y2="340" stroke="#1c1915"/>
+  <line x1="120" y1="220" x2="300" y2="430" stroke="#1c1915"/>
+  <line x1="120" y1="230" x2="320" y2="520" stroke="#1c1915"/>
+  <line x1="842" y1="270" x2="650" y2="250" stroke="#1c1915"/>
+
+  <text x="40" y="620" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#4a453c">UC3 produces the forecasts it needs. UC5 is separate and applies only when meters exist. Editable source: diagrams/use-case.mmd</text>
+</svg>

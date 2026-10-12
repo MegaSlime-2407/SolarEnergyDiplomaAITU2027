@@ -1,0 +1,12 @@
+flowchart LR
+  energyManager[EnergyManager]
+  maintenanceEngineer[MaintenanceEngineer]
+  meterArchive[MeterArchive]
+  weatherForecast[WeatherForecast]
+  tariffTable[TariffTable]
+  dispatchAdvisor[DispatchAdvisor]
+  energyManager -->|requests schedule and reads KPIs| dispatchAdvisor
+  maintenanceEngineer -->|sets battery limits| dispatchAdvisor
+  meterArchive -->|PV load and state of charge| dispatchAdvisor
+  weatherForecast -->|optional irradiance| dispatchAdvisor
+  tariffTable -->|optional prices| dispatchAdvisor

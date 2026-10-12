@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="560" viewBox="0 0 960 560">
+  <rect width="960" height="560" fill="#f7f5f0"/>
+  <text x="40" y="36" font-family="Georgia, serif" font-size="20" fill="#1c1915">System context  Dispatch Advisor</text>
+  <text x="40" y="58" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#4a453c">One industrial site. The software advises. It does not command equipment.</text>
+
+  <rect x="330" y="180" width="300" height="160" rx="8" fill="#1c1915"/>
+  <text x="480" y="248" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#f7f5f0">Dispatch Advisor</text>
+  <text x="480" y="274" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#d6d1c7">Day-ahead battery schedule</text>
+  <text x="480" y="294" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#d6d1c7">and KPI comparison</text>
+
+  <rect x="40" y="150" width="210" height="64" rx="6" fill="#ffffff" stroke="#1c1915"/>
+  <text x="145" y="176" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#1c1915">Energy manager</text>
+  <text x="145" y="196" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#4a453c">Primary user</text>
+
+  <rect x="40" y="300" width="210" height="64" rx="6" fill="#ffffff" stroke="#1c1915"/>
+  <text x="145" y="326" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#1c1915">Maintenance engineer</text>
+  <text x="145" y="346" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#4a453c">Sets battery limits</text>
+
+  <rect x="710" y="90" width="210" height="64" rx="6" fill="#ffffff" stroke="#1c1915"/>
+  <text x="815" y="116" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#1c1915">Meter archive</text>
+  <text x="815" y="136" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#4a453c">PV, load, state of charge</text>
+
+  <rect x="710" y="210" width="210" height="64" rx="6" fill="#ffffff" stroke="#1c1915"/>
+  <text x="815" y="236" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#1c1915">Weather forecast</text>
+  <text x="815" y="256" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#4a453c">Optional irradiance</text>
+
+  <rect x="710" y="330" width="210" height="64" rx="6" fill="#ffffff" stroke="#1c1915"/>
+  <text x="815" y="356" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#1c1915">Tariff table</text>
+  <text x="815" y="376" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#4a453c">Optional prices</text>
+
+  <line x1="250" y1="182" x2="330" y2="230" stroke="#1c1915" stroke-width="1.4"/>
+  <line x1="250" y1="332" x2="330" y2="290" stroke="#1c1915" stroke-width="1.4"/>
+  <line x1="710" y1="122" x2="630" y2="210" stroke="#1c1915" stroke-width="1.4"/>
+  <line x1="710" y1="242" x2="630" y2="250" stroke="#1c1915" stroke-width="1.4"/>
+  <line x1="710" y1="362" x2="630" y2="300" stroke="#1c1915" stroke-width="1.4"/>
+
+  <text x="40" y="500" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#4a453c">PV array, battery, and grid are not actors. They appear only as values in the study file.</text>
+  <text x="40" y="520" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#4a453c">Editable source: diagrams/context.mmd</text>
+</svg>
