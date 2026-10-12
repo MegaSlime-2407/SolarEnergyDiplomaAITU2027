@@ -6,11 +6,11 @@ The system is a decision-support tool, called here the Dispatch Advisor, for one
 
 Diagrams, with editable Mermaid sources and SVG exports:
 
-| View | Source | Export |
-| --- | --- | --- |
-| System context | [../diagrams/context.mmd](../diagrams/context.mmd) | [../diagrams/exports/context.svg](../diagrams/exports/context.svg) |
-| Use cases | [../diagrams/use-case.mmd](../diagrams/use-case.mmd) | [../diagrams/exports/use-case.svg](../diagrams/exports/use-case.svg) |
-| Components (draft) | [../diagrams/component.mmd](../diagrams/component.mmd) | [../diagrams/exports/component.svg](../diagrams/exports/component.svg) |
+| View | Source | PNG | SVG |
+| --- | --- | --- | --- |
+| System context | [../diagrams/context.mmd](../diagrams/context.mmd) | [../diagrams/exports/context.png](../diagrams/exports/context.png) | [../diagrams/exports/context.svg](../diagrams/exports/context.svg) |
+| Use cases | [../diagrams/use-case.mmd](../diagrams/use-case.mmd) | [../diagrams/exports/use-case.png](../diagrams/exports/use-case.png) | [../diagrams/exports/use-case.svg](../diagrams/exports/use-case.svg) |
+| Components (draft) | [../diagrams/component.mmd](../diagrams/component.mmd) | [../diagrams/exports/component.png](../diagrams/exports/component.png) | [../diagrams/exports/component.svg](../diagrams/exports/component.svg) |
 
 ## Context
 
