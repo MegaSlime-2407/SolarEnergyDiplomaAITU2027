@@ -1,5 +1,7 @@
 # 8. UX / prototype
 
+[View the web and mobile prototype in Figma](https://www.figma.com/design/JG0yUG3LTwPtctYxwVibTx/Untitled?node-id=33-1569&t=pbKQ9PRcn2mZy6WG-1)
+
 ## User Interaction and Interface Mockups
 
 The proposed system is a web-based decision-support platform intended for the energy specialist of an industrial facility, with an adapted mobile interface for reviewing and accepting the plan away from the workstation. In both versions, interaction with the system is organized around four screens. Mockups of the web version are provided below (Figures 8.1–8.4), and mockups of the mobile version follow them (Figures 8.5–8.6). The key user scenarios are described below.
