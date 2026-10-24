@@ -24,29 +24,17 @@ Input and output data. The input consists of (i) a facility data file (solar pan
 
 Web version. The web version is intended for work at the specialist’s workstation. It uses a full-width layout with a side navigation menu and presents the hourly plan as a single table with all indicators in one view.
 
-![Prototype mockup 1](assets/prototype/mockup-1.jpg)
-
 *Figure 8.1. Mockup of the "Data and limits" screen of the web version (battery limits, facility file and test scenarios, file check).*
-
-![Prototype mockup 2](assets/prototype/mockup-2.jpg)
 
 *Figure 8.2. Mockup of the "Daily balance" screen of the web version (use of solar energy, daily summary and battery plan).*
 
-![Prototype mockup 3](assets/prototype/mockup-3.jpg)
-
 *Figure 8.3. Mockup of the "24-hour plan" screen of the web version (hourly plan with a reason for every interval).*
-
-![Prototype mockup 4](assets/prototype/mockup-4.jpg)
 
 *Figure 8.4. Mockup of the "Forecast error" screen of the web version (forecast against meter readings).*
 
 Mobile version. The mobile interface reproduces the same four screens and the same calculation, so that every scenario described above can be carried out from a phone. Navigation is moved to a bottom bar, and the principal actions (calculation of the plan, acceptance or rejection of the plan) are fixed at the bottom of the screen. The wide hourly table is replaced by a list of cards, each presenting the hour, the justification of the decision, the state of charge, the grid power, and the battery power. The mobile interface belongs to the same recommendation-only platform and introduces no additional functions.
 
-![Prototype mockup 5](assets/prototype/mockup-5.png)
-
 *Figure 8.5. Mockups of the mobile version: (a) the "Data and limits" screen; (b) the "Daily balance" screen.*
-
-![Prototype mockup 6](assets/prototype/mockup-6.png)
 
 *Figure 8.6. Mockups of the mobile version: (a) the "24-hour plan" screen; (b) the "Forecast error" screen.*
 
