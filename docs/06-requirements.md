@@ -1,64 +1,74 @@
-# Requirements specification
+# 6. Requirements
 
-**Owner:** Member C. **Status:** initial requirements for the 24 October pre-defense. Mandatory items are written so a later test or an inspection can fail them. Priorities are Must, Should, and Could.
+**Owner:** Musagali Kundyz.
 
-Identifiers are stable. [05-technology-comparison.md](05-technology-comparison.md) and [09-verification-plan.md](09-verification-plan.md) refer to these numbers.
+Priorities are Must, Should, and Could. Every Must row has a check.
 
-## Actors and objects
+The four screens are the data-and-limits screen, the daily balance, the 24-hour plan, and the forecast error. The main calculation is the day-ahead optimization. The second calculation is the simple rule. Both use the same forecast.
+
+## 6.1 Actors and objects
+
+*Table 6.1. Actors and objects.*
 
 | Name | Meaning |
 | --- | --- |
-| Energy manager | Reviews forecasts, the schedule, and KPI comparisons |
-| Maintenance engineer | Edits battery limits |
-| Study file | 15-minute time series and scalar battery and tariff parameters for one site and one horizon |
-| Schedule | For each interval: charge power, discharge power, state of charge, grid import, and a reason code |
-| Surplus rule | The baseline defined in [09-verification-plan.md](09-verification-plan.md) |
+| Energy specialist | Loads the file, reads the plan, and accepts or rejects it. |
+| Engineer | Sets power, capacity, the charge window, the starting level, and the daily cycle limit. |
+| Facility file | Solar panel power, load history, and an optional irradiance forecast. |
+| Main plan | The optimized charge and discharge for 24 hourly intervals. |
+| Simple rule | The baseline on the same forecast. It may exceed the daily cycle limit. |
 
-## Functional requirements
+## 6.2 Functional requirements
 
-| ID | Priority | Statement | Acceptance criterion | How to check |
-| --- | --- | --- | --- | --- |
-| FR1 | Must | The system accepts one site’s study file: timestamped PV power, site load, initial state of charge, battery energy capacity, charge and discharge power limits, minimum and maximum state of charge, charge and discharge efficiency, a daily throughput cap, and optional import and export prices | A file that matches the column list in [08-prototype.md](08-prototype.md) is accepted. A file missing PV power, load, or initial state of charge is rejected with the name of each missing field. Units are kW, kWh, and 0–1 for state of charge and efficiency | Later: fixture files, one valid and one invalid. Now: the column list exists in the prototype |
-| FR2 | Must | Given history and, when present, a weather forecast, the system produces a PV power forecast and a load forecast for each interval of the next day | For a day with 96 intervals, both forecasts have 96 values, PV is zero when the solar elevation is below zero if that elevation is provided, and neither forecast contains negative power. Error against metered values is reported with MAE and RMSE, including the same scores for persistence | Later: forecast unit test on a withheld day. Now: FR2 names the scores the evaluation plan must compute |
-| FR3 | Must | The system produces a battery schedule for every interval in the horizon | The output table has one row per input interval and no missing power or state-of-charge cell | Later: row-count assertion. Now: the output columns are listed in the prototype |
-| FR4 | Must | The schedule respects charge and discharge power limits, state-of-charge bounds, efficiency, the daily throughput cap, a ban on simultaneous charge and discharge, a ban on charging from the grid, and a ban on exporting battery energy | For every row, charge and discharge are each within \[0, Pmax\], at most one of them is positive, charge energy does not exceed PV surplus after the load, discharge energy does not exceed the load that PV did not cover, state of charge stays inside \[SOCmin, SOCmax\], the state-of-charge update matches power, step length, and efficiency within a stated numeric tolerance, and charge energy plus discharge energy does not exceed the daily throughput cap | Later: constraint checker on the solver output, independent of the solver’s own claim. Now: the constraint list is the one in this row |
-| FR5 | Must | The system reports self-consumption rate, self-sufficiency, grid-import energy, peak grid-import power, and battery throughput for the horizon | Each indicator uses the formula in [09-verification-plan.md](09-verification-plan.md). Units are shown. Division by zero (no PV, or no load) is reported as “undefined”, not as zero | Later: hand-calculated fixture of four intervals. Now: formulas exist in the verification plan |
-| FR6 | Must | The system runs the surplus rule on the same forecasts or the same metered series, as selected by the user, and reports FR5’s indicators for both | Both KPI blocks are present, the baseline block is labelled “surplus rule”, and the energy balance of the baseline also satisfies FR4 except the throughput cap. The surplus rule may be infeasible with respect to the throughput cap; if so, the report says so and does not silently drop the cap for the proposed schedule | Later: paired KPI fixture. Now: the rule is specified in the verification plan |
-| FR7 | Should | When metered PV and load exist for the horizon, the system shows forecast versus meter | A plot or table aligns forecast and meter on the same timestamps, and MAE and RMSE from FR2 are visible without opening a log file | Later: UI or report inspection on a day that has actuals |
-| FR8 | Must | The maintenance engineer can change power limits, state-of-charge bounds, initial state of charge, and the throughput cap, then recompute | After a change, FR3–FR6 are produced from the new limits. The previous limits and the new limits are both visible. A limit with SOCmin greater than SOCmax, or a negative power limit, is rejected | Later: edit-and-recompute test. Now: the battery screen in the prototype lists these fields |
-| FR9 | Should | The energy manager can export the schedule as a table | The export contains the columns in the prototype’s schedule screen and opens in a spreadsheet without manual splitting | Later: export a CSV and open it |
-| FR10 | Should | Each interval carries a plain-language reason: charge from surplus, discharge to cover load, hold for a later interval, or idle at a limit | Every row has exactly one reason code from that set. For a fixture where the throughput cap binds, at least one row is “idle at a limit” or “hold for a later interval”, and the report names the cap | Later: fixture with a tight throughput cap. The MILP choice in the technology comparison is what makes this check possible |
+*Table 6.2. Functional requirements.*
 
-## Non-functional requirements
+| ID | Priority | Requirement | Acceptance |
+| --- | --- | --- | --- |
+| FR1 | Must | Accept one facility file and the battery limits: power, capacity, minimum and maximum state of charge, initial state of charge, and the daily cycle limit. Irradiance is optional. | A complete file is accepted. A file missing panel power, load, or the initial state of charge is rejected with the missing names. |
+| FR2 | Must | Forecast solar generation and facility load for the next day in 24 hourly intervals, and also compute the same-as-yesterday forecast. | The output has 24 values for each series. No value is negative. |
+| FR3 | Must | Produce the main plan for those 24 hours. The objective is solar energy used on site. Power, the state-of-charge window, and the daily cycle limit are hard constraints. The battery is not charged from the grid. Losses are not modelled. | An independent check replays state of charge. Equivalent cycles, charge plus discharge energy divided by twice the capacity, stay within the daily limit. |
+| FR4 | Must | Run the simple rule on the same forecast. Solar covers the load first, surplus charges the battery, a deficit uses the battery down to the minimum, and the rest comes from the grid. | The rule is labelled simple rule. If it exceeds the daily cycle limit, the screen says so and does not hide the limit on the main plan. |
+| FR5 | Must | Give every hour one reason, and name the limit when that limit stops a larger charge or discharge. | The 24-hour screen shows the reason. The solver said so is not a reason. |
+| FR6 | Must | Report, for both calculations, the solar energy utilization rate, grid electricity consumption, unused surplus, and whether the battery limits hold. | Units are shown. A ratio is undefined when its denominator is zero. |
+| FR7 | Must | When meter readings exist, show forecast against meter and the mean absolute error of both forecasts. | If the meters are absent, the forecast-error screen says so. It does not show a zero error. |
+| FR8 | Must | Let the engineer edit the limits, including the daily cycle limit, and recompute both calculations. | A minimum above the maximum, a negative power, or a negative cycle limit is rejected. The previous and the new limits stay visible. |
+| FR9 | Should | The specialist can accept or reject the plan. Rejection does not send a command to equipment. | The choice is stored. No set-point is written. |
+| FR10 | Must | Offer the same plan through the web pages and, at the final milestone, through the Flutter application. | Both clients call the same API. The mobile application is not required for the first pre-defense screens. |
+| FR11 | Must | Run the four scenarios: high solar generation, low solar generation, high facility demand, and limited battery capacity. | Each scenario names its file and reports FR6 for both calculations. |
 
-| ID | Priority | Statement | Acceptance criterion | How to check |
-| --- | --- | --- | --- | --- |
-| NFR1 | Must | A 96-interval horizon completes forecasts, both schedules, and the KPI block in under 60 seconds on a laptop the team names in the test record | The test record states the machine, the solver, and the elapsed time. The time is under 60 seconds. A longer run fails this requirement even if the schedule is feasible | Later: one timed run. Not applicable to this documentation tag |
-| NFR2 | Must | Every Must requirement in this file has a check that a reviewer can apply | This table has a non-empty “How to check” cell for every Must row. A Must row with only “to be defined” fails | Inspection of this document |
-| NFR3 | Must | The repository contains no passwords, API keys, personal meter files, or contact details that are not already public | A review of the tree finds no `.env` secrets and no private interview data. Public company emails in [interviews/contacts.md](interviews/contacts.md) are allowed because they are published by those organisations | Inspection at each pre-defense tag |
-| NFR4 | Must | A reviewer can trace a scheduled power back to the constraint that shaped it | For any sampled interval, the output shows the power, the state of charge, the active reason code (FR10), and, when a bound is tight, the name of that bound. “The solver said so” is not an acceptable trace | Later: sample three intervals from a solved day, including one at a bound |
-| NFR5 | Must | The system is specified for one site and one battery | The study file has no site-identifier column that changes behaviour, and the architecture has no portfolio optimiser. A request to schedule two batteries is out of scope, not a hidden feature | Inspection of the study-file columns and [07-architecture.md](07-architecture.md) |
-| NFR6 | Must | Text that depends on practitioners distinguishes verified findings from assumptions | [02-relevance.md](02-relevance.md) keeps a verified section that is empty until the log says otherwise. A design document that says “interviews showed” without a log ID fails | Inspection of the relevance note and the interview log |
-| NFR7 | Must | The same study file, limits, and forecast inputs produce the same schedule | Two consecutive runs write identical schedule tables, allowing a documented numeric tolerance not larger than 0.01 kW and 0.001 state of charge | Later: diff two runs. A stochastic solver would fail unless it is pinned |
+## 6.3 Non-functional requirements
 
-## Could, recorded so they are not mistaken for commitments
+*Table 6.3. Non-functional requirements.*
+
+| ID | Priority | Requirement | Acceptance |
+| --- | --- | --- | --- |
+| NFR1 | Must | A 24-hour plan, both forecasts, and both calculations finish in under 60 seconds on a laptop named in the test record. | The record states the machine and the elapsed time. |
+| NFR2 | Must | Every Must requirement has a check. | Inspection of this table. |
+| NFR3 | Must | The repository contains no passwords, API keys, or non-public meter files. | Inspection at each submission. |
+| NFR4 | Must | The same file and limits produce the same plan. | Two runs match within 0.01 kW and 0.001 state of charge. |
+| NFR5 | Must | One site and one battery. | The file has no second battery. |
+| NFR6 | Must | The specialist can see the file check, the daily balance, the 24-hour plan with reasons, and the forecast error without opening a log. | The four screens in the prototype contain those fields. |
+| NFR7 | Must | Charge and discharge losses stay out of the model. | The state-of-charge update uses efficiency 1, and the text says that losses are not modelled. |
+
+## 6.4 Could, not commitments
+
+*Table 6.4. Items that are not commitments.*
 
 | ID | Statement | Why it is not a Must |
 | --- | --- | --- |
-| CO1 | Intraday correction of the day-ahead schedule when live meters diverge from the forecast | Talluri et al. do this. It is a later extension. The first evaluation uses the day-ahead schedule only |
-| CO2 | A neural-network forecast challenger | Allowed by the technology comparison if boosting loses to persistence. Not required for acceptance |
-| CO3 | Hosting the scheduler inside OpenEMS | Deployment option only. The core remains the standalone model |
+| CO1 | A tariff or a cost column. | The proposal optimises solar used on site, not a bill. |
+| CO2 | A deep learning forecast. | Section 5 does not choose it. |
+| CO3 | A command to an inverter. | Out of scope in the proposal. |
 
-## Trace to the aim
+## 6.5 Trace to the aim
 
-| Aim fragment | Requirements |
+*Table 6.5. Requirements traced to the proposal.*
+
+| Aim | Requirements |
 | --- | --- |
-| More of the site’s PV used on site | FR5, FR6, and the primary term in the objective described in the architecture |
-| Without breaking battery limits | FR4, FR8, NFR4 |
-| Compared with a surplus rule | FR6 |
-| One industrial facility | FR1, NFR5 |
-| Explainable to an energy manager | FR7, FR9, FR10, NFR4 |
-
-## Open points that are assumptions
-
-Until [02-relevance.md](02-relevance.md) records a verified finding, FR5’s choice to rank self-consumption above peak demand is assumption A6, and the presence of prices in FR1 as optional fields is assumption A7. If interviews reverse that ranking, FR5 stays, and the objective priority in the architecture is edited in the same change.
+| Forecast the next day | FR2 and FR7. |
+| Allocate the battery and respect the daily cycle limit | FR3, FR8, and NFR7. |
+| Compare with the simple rule | FR4 and FR6. |
+| Show a reason and let the specialist decide | FR5, FR9, and NFR6. |
+| Web now, Flutter later, one API | FR10 and section 5. |
+| Four scenarios and six indicators | FR6, FR7, FR11, and NFR6. |
