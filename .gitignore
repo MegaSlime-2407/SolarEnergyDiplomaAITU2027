@@ -1,0 +1,13 @@
+.DS_Store
+*.swp
+.idea/
+.vscode/
+__pycache__/
+.venv/
+venv/
+.env
+.env.*
+*.pem
+*.key
+credentials.json
+secrets.json
