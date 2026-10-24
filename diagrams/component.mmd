@@ -1,24 +1,20 @@
 flowchart TB
-  operatorViews[OperatorViews]
-  dataIntake[DataIntake]
-  pvForecast[PvForecast]
-  loadForecast[LoadForecast]
-  optimizer[Optimizer]
-  baselineScheduler[BaselineScheduler]
-  constraintChecker[ConstraintChecker]
-  kpiReporter[KpiReporter]
-  operatorViews -->|study file and limits| dataIntake
-  dataIntake --> pvForecast
-  dataIntake --> loadForecast
-  dataIntake --> optimizer
-  dataIntake --> baselineScheduler
-  pvForecast --> optimizer
-  loadForecast --> optimizer
-  pvForecast --> baselineScheduler
-  loadForecast --> baselineScheduler
-  optimizer --> constraintChecker
-  baselineScheduler --> constraintChecker
-  constraintChecker --> kpiReporter
-  pvForecast --> kpiReporter
-  loadForecast --> kpiReporter
-  kpiReporter -->|schedule KPIs and reasons| operatorViews
+  web[Web pages]
+  mobile[Flutter app]
+  api[API]
+  db[(Database)]
+  forecast[Forecast]
+  optimizer[Day-ahead optimizer]
+  rule[Simple rule]
+  checker[Limit checker]
+  indicators[Indicators]
+  web --> api
+  mobile --> api
+  api --> forecast
+  api --> db
+  forecast --> optimizer
+  forecast --> rule
+  optimizer --> checker
+  rule --> checker
+  checker --> indicators
+  indicators --> api
